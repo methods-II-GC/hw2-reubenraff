@@ -27,7 +27,6 @@ logger = logging.getLogger('split_data.log')
 
 
 def write_tags(file_path: str, data: str) -> str:
-#def write_tags(file_path,data: strstr) -> str:
     with open(file_path, "w") as file:
         for sent in data:
             for line in sent:
@@ -67,11 +66,7 @@ def main(args: argparse.Namespace) -> None:
     write_tags(args.test, test_data)
 
     corpus = list(read_tags("conll2000.tag"))
-    #num_of_prepositions = count_prepositions(corpus)
-    #logging.info(f"Found {num_of_prepositions} prepositions.")
-
-    #logging.basicConfig(filename="split.log",level=logging.INFO,
-    #format="%(levelname)s:%(message)s")
+ 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -87,36 +82,3 @@ if __name__ == "__main__":
 
     main(parser.parse_args())
 
-
-"""
-(base) ➜  hw2-reubenraff git:(hw2) ✗ wc -l train.tag dev.tag test.tag
-207187 train.tag
-26224 dev.tag
-25665 test.tag
-259076 total
-
-207187. / 259076.
-0.7997151415028795
-26224. / 259076.
-0.10122126325865768
-25665. / 259076.
-0.09906359523846285
-"""
-
-
-
-
-
-"""
-(base) ➜  hw2-reubenraff git:(hw2) ✗ ./split.py conll2000.tag train.tag dev.tag test.tag --seed 250
-(base) ➜  hw2-reubenraff git:(hw2) ✗ shasum -a256 train.tag dev.tag test.tag
-52075be05277dc52a500e59217007de860aacdb8d99cf0d882b679e46e2f7fb6  train.tag
-20c63d10ecc46cd4ddfe4c984cfc485d7f5e71b3a9cf436d7f0e121562f984ff  dev.tag
-b8a7ab00cc19d38c86ac99339dd7cfcfe5fd08226acbcdde7e4f99af788398c5  test.tag
-(base) ➜  hw2-reubenraff git:(hw2) ✗ ./split.py conll2000.tag train.tag dev.tag test.tag --seed 250
-(base) ➜  hw2-reubenraff git:(hw2) ✗ shasum -a256 train.tag dev.tag test.tag
-52075be05277dc52a500e59217007de860aacdb8d99cf0d882b679e46e2f7fb6  train.tag
-20c63d10ecc46cd4ddfe4c984cfc485d7f5e71b3a9cf436d7f0e121562f984ff  dev.tag
-b8a7ab00cc19d38c86ac99339dd7cfcfe5fd08226acbcdde7e4f99af788398c5  test.tag
-(base) ➜  hw2-reubenraff git:(hw2) ✗
-"""
